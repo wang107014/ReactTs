@@ -23,7 +23,7 @@ const themeConfig = lessToJs(
     resolveVariables: false,
   },
 )
-
+const TerserPlugin = require('terser-webpack-plugin');
 const devServerConfig = () => (config) => {
   return {
     ...config,
@@ -47,7 +47,7 @@ const addOptimization = () => (config) => {
         maxAsyncRequests: 5,
         maxInitialRequests: 3,
         automaticNameDelimiter: '~',
-        name: true,
+        name: false,
         cacheGroups: {
           vendors: {
             test: /[\\/]node_modules[\\/]/,
@@ -80,11 +80,6 @@ const addOptimization = () => (config) => {
   return config
 }
 module.exports = {
-  plugins: [
-    require('autoprefixer')({
-      overrideBrowserslist: ["last 2 version", ">1%", "iOS 7"]
-    })
-  ],
   webpack: override(
     addOptimization(),
     //  装饰器

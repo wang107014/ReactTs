@@ -1,6 +1,6 @@
 import React, {Suspense, useEffect} from 'react';
 import {Spin} from "antd";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 
 interface IProps {
   name?: string
@@ -26,11 +26,20 @@ const Router: React.FC<IProps> = (props: IProps) => {
       <Suspense fallback={Spinner}>
         <BrowserRouter basename={baseName}>
           <Switch>
+            <Route path="/" exact>
+              <Redirect to="/login" />
+            </Route>
             <Route
               path="/login"
               exact
               component={React.lazy(
-                () => import(/* webpackChunkName: "login" */ "../pages/Login/login")
+                () => import(/* webpackChunkName: "login" */ "@/pages/Login/login")
+              )}/>
+            <Route
+              path="/home"
+              exact
+              component={React.lazy(
+                () => import(/* webpackChunkName: "login" */ "@/pages/Home")
               )}/>
           </Switch>
         </BrowserRouter>
