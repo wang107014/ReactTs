@@ -41,6 +41,18 @@ const Router: React.FC<IProps> = (props: IProps) => {
               component={React.lazy(
                 () => import(/* webpackChunkName: "login" */ "@/pages/Home")
               )}/>
+            <Route
+              path="/drag"
+              exact
+              component={React.lazy(
+                () => import(/* webpackChunkName: "login" */ "@/pages/Drag")
+              )}/>
+            <Route
+              path="/codemirror"
+              exact
+              component={React.lazy(
+                () => import(/* webpackChunkName: "codemirror" */ "@/pages/Edit/codemirror")
+              )}/>
           </Switch>
         </BrowserRouter>
       </Suspense>

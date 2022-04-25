@@ -21,13 +21,19 @@ const Demo: React.FC<IProps> = (props: IProps) => {
   const project = useSelector((store: any) => {
     return store.storeData.project;
   });
-  const goHome = () => {
-    history.push('/home')
+  const goHome = (path:string) => {
+    history.push(path)
   }
   return (
     <div>
-      <div onClick={goHome}>
+      <div onClick={() => {goHome('/home')}}>
         点击跳转home
+      </div>
+      <div onClick={() => {goHome('/drag')}}>
+        点击跳转drag
+      </div>
+      <div onClick={() => {goHome('/codemirror')}}>
+        点击跳转codemirror
       </div>
       {project?.projectName}
     </div>
